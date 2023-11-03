@@ -1,0 +1,227 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kreeck Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/video_style.css' %}">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'img/logo.png' %}"/>
+
+    <style></style>
+</head>
+
+<body>
+
+    
+    <div class="nav-bar">
+        <div class="logo">
+            <h3>Kreeck Academy.</h3>
+        </div>
+        <div class="links">
+            <a class="nav-links" href="#" id="search-icon">
+                <i class="fa fa-search fa-lg" aria-hidden="true"></i>
+            </a>
+            <a class="nav-links" href="#" id="bell-icon">
+                <i class="fa fa-bell fa-lg" aria-hidden="true"></i>
+            </a>
+            <a class="nav-links" href="#" id="user-icon">
+                <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+
+
+    
+    <main class="container">
+        
+        <section class="main-video">
+            <div class="course-title">
+                <h3>Course name - {{ video.course }}</h3>
+            </div>
+            <video src="" controls autoplay muted></video>
+            <h3 class="title"  contenteditable="true" id="editable-h3">{{ video.title }}</h3>
+            <div class="action-container">
+                <div class="flex">
+                    <p class="link-text">Previous</p>
+                    <a href="" class="prev-video">
+                        <i class="fa fa-play-circle"></i>
+                        <span class="video-name link-text"></span>
+                    </a>
+                </div>
+                
+                <div class="flex">
+                    <p class="link-text">Next</p>
+                    <a href="" class="next-video">
+                        <i class="fa fa-play-circle"></i>
+                        <span class="video-name link-text"></span>
+                    </a>
+                </div>
+                
+                
+            </div>
+            <div class="notes-title">
+                <h5>Notes</h5>
+            </div>
+            <div class="notes">
+                <p >{{ video.summary|safe }}</p>
+            </div>
+            
+        </section>
+
+        <section class="video-playlist">
+            <h3 class="course-lessons-title">Course Lessons</h3>
+            <div class="videos">
+            </div>
+            <section class="document-playlist">
+                <h3 class="course-lessons-title">Course Documents</h3>
+                <div class="files">
+                    <!-- Document links will be added here dynamically -->
+                </div>
+            </section>
+        </section>
+
+        
+        
+        
+        
+    </main>
+    <script>
+        const mainVideo = document.querySelector('.main-video video');
+        const mainVideoTitle = document.querySelector('.main-video .title');
+        const videoPlaylist = document.querySelector('.video-playlist .videos');
+        const prevVideoLink = document.querySelector('.prev-video');
+        const nextVideoLink = document.querySelector('.next-video');
+        const videoName = document.querySelector('.next-video .video-name');
+        const filesPlaylist = document.querySelector('.document-playlist .files');
+
+        
+
+        
+        //this is video data
+        let data = [
+            {% for video in videos %}
+            {
+                'id': '{{ video.id }}',
+                'title': '{{ video.title|title }}',
+                'video_url': 'https://academykreeck-bucket.s3.amazonaws.com/{{ video.video }}',
+            },
+            {% endfor %}
+        ];
+        
+        //this is the document data
+        let documentData = [
+            {% for file in files %}
+            {
+                'id': '{{ file.id }}',
+                'title': '{{ file.title|title }}',
+                'document_url': '{{ file.file.url }}',
+            },
+            {% endfor %}
+        ];
+    
+        let currentVideoIndex = 0;
+    
+        data.forEach((video, i) => {
+            let videoElement = document.createElement('div');
+            videoElement.classList.add('video'); // Corrected line
+            videoElement.dataset.id = video.id;
+            videoElement.innerHTML = `
+                <img src="{% static 'img/play.svg' %}" alt="">
+                <p>${i + 1 > 9 ? i + 1 : '0' + (i + 1)}. </p>
+                <h3 class="title">${video.title}</h3>
+            `;
+            videoPlaylist.appendChild(videoElement);
+    
+            videoElement.addEventListener('click', () => {
+                // Update main video when a lesson is clicked
+                mainVideo.src = video.video_url;
+                mainVideoTitle.textContent = video.title;
+                currentVideoIndex = i;
+                updatePrevNextLinks();
+            });
+        });
+    
+        function updatePrevNextLinks() {
+            prevVideoLink.style.display = currentVideoIndex > 0 ? 'block' : 'none';
+            nextVideoLink.style.display = currentVideoIndex < data.length - 1 ? 'block' : 'none';
+    
+            // Update the video name or show "No Video"
+            if (currentVideoIndex > 0) {
+                const prevVideo = data[currentVideoIndex - 1];
+                prevVideoLink.querySelector('.video-name').textContent = prevVideo.title;
+            } else {
+                prevVideoLink.querySelector('.video-name').textContent = 'No Video';
+            }
+    
+            if (currentVideoIndex < data.length - 1) {
+                const nextVideo = data[currentVideoIndex + 1];
+                nextVideoLink.querySelector('.video-name').textContent = nextVideo.title;
+            } else {
+                nextVideoLink.querySelector('.video-name').textContent = 'No Video';
+            }
+        }
+    
+        prevVideoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentVideoIndex > 0) {
+                currentVideoIndex--;
+                const prevVideo = data[currentVideoIndex];
+                mainVideo.src = prevVideo.video_url;
+                mainVideoTitle.textContent = prevVideo.title;
+                videoName.textContent = prevVideo.title; // Update the video name
+                updatePrevNextLinks();
+            }
+        });
+    
+        nextVideoLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentVideoIndex < data.length - 1) {
+                currentVideoIndex++;
+                const nextVideo = data[currentVideoIndex];
+                mainVideo.src = nextVideo.video_url;
+                mainVideoTitle.textContent = nextVideo.title;
+                videoName.textContent = nextVideo.title; // Update the video name
+                updatePrevNextLinks();
+            }
+        });
+    
+        //Initialize with the first video
+       
+        if (data.length > 0) {
+            const firstVideo = data[0];
+            mainVideo.src = firstVideo.video_url;
+            mainVideoTitle.textContent = firstVideo.title;
+            videoName.textContent = firstVideo.title; // Update the video name
+            updatePrevNextLinks();
+        }
+
+
+        function createDocumentElement(doc, i) {
+        let documentElement = document.createElement('div');
+        documentElement.classList.add('document');
+        documentElement.dataset.id = doc.id;
+        documentElement.innerHTML = `
+            <a href="${doc.document_url}" target="_blank" title="${doc.title}">
+                <i class="fas fa-file-${doc.get_extension_short}"></i>
+                <span>${doc.title}</span>
+            </a>
+        `;
+        filesPlaylist.appendChild(documentElement);
+    }
+
+    documentData.forEach((doc, i) => {
+        createDocumentElement(doc, i);
+    });
+
+    </script>
+    
+    </body>
+
+</html>
+{% endblock content %}

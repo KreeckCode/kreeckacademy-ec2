@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard | Kreeck Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="{% static 'css/new-styles.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"> -->
+    <!-- <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}"> -->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/black.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'img/logo.png' %}"/>
+    <script src="{% static 'tinymce/tinymce.min.js' %}"></script>
+   <style>
+    .circles-preloader {
+        position: fixed; /* Change from absolute to fixed for full-screen coverage */
+        background-color: rgba(0, 0, 0, 0.7); /* Tinted background */
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        z-index: 9999; /* Ensure the loader appears on top of everything */
+        }
+
+    .circle {
+        width: 2.5%;
+        padding-top: 2.5%;
+        height: 0%;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .circle-1 {
+        background-color: red;
+        opacity: 0;
+        animation: 4s circle-move 0s infinite; 
+    }
+    .circle-2 {
+        background-color: green;
+        opacity: 0;
+        animation: 4s circle-move 1s infinite;
+    }
+    .circle-3 {
+        background-color: blue;
+        opacity: 0;
+        animation: 4s circle-move 2s infinite;
+    }
+    .circle-4 {
+        background-color: yellow;
+        opacity: 0;
+        animation: 4s circle-move 3s infinite;
+    }
+    @keyframes circle-move {
+        0%, 15% { left: 53.5%; transform: translateX(-50%) translateY(-50%) scale(0); opacity: 0; }
+            15.1%, 25% { left: 53.5%; transform: translateX(-50%) translateY(-50%) scale(0.5); opacity: 0.5; }
+        50% { left: 50%; transform: translateX(-50%) translateY(-50%) scale(1); opacity: 1; }
+        75%, 85% { left: 46.5%; transform: translateX(-50%) translateY(-50%) scale(0.5); opacity: 0.5; }
+        85.1%, 100% { left: 46.5%; transform: translateX(-50%) translateY(-50%) scale(0); opacity: 0; }
+    }
+
+   </style>
+</head>
+
+
+<body>
+    <div class="circles-preloader">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+        <div class="circle circle-4"></div>
+        <div class="circle circle-5"></div>
+        <div class="circle circle-6"></div>
+    </div>
+    
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand-->
+        <a class="navbar-brand ps-3" style="font-family: 'Inter', sans-serif" href="{% url 'landing_page' %}">Kreeck Academy<span>.</span></a>
+        
+        <!-- Sidebar Toggle-->
+        <a class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="">
+            <i class="fas fa-bars"></i>
+        </a>
+
+        <!-- Navbar Search-->
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0" action="{% url 'query' %}" method="GET">
+            <div class="input-group">
+                <input id="primary-search" class="form-control " type="text" placeholder="Search" aria-label="Search for..." name="q" value="{{ request.GET.q }}"
+                    aria-describedby="btnNavbarSearch" />
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+        <!-- Navbar-->
+
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-bell fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" ><i class="fas fa-comments fa-fw"></i>  You have a new reply</a></li>
+                    <li><a class="dropdown-item"> <i class="fas fa-handshake fa-fw"></i> Course Complete</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="">Clear All Notifications</a></li>
+                </ul>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="{% url 'edit_profile' %}"><i class="fas fa-cogs"></i>Settings</a></li>
+                    <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i>Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>Sign Out</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        {% if request.user.is_lecturer %}
+                        <div class="sb-sidenav-menu-heading">Lecture</div>
+                        {% endif %}
+                        
+                        {% if request.user.is_superuser %}
+                        <div class="sb-sidenav-menu-heading">Admin</div>
+                        <a class="nav-link" href="{% url 'home' %}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link" href="{% url 'course_allocation_view' %}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-line-chart"></i>
+                            </div>
+                            Allocation
+                        </a>
+                        <a class="nav-link" href="{% url 'semester_list'%} ">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            Semester
+                        </a>
+                        
+                        <a class="nav-link" href="{% url 'student_list'%}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-users"></i>
+                         </div>
+                            Students
+                        </a>
+                        
+                        <a class="nav-link" href="{% url 'lecturer_list'%}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-id-card"></i>
+                            </div>
+                            Lectures
+                        </a>
+                        {% endif %}
+                        <a class="nav-link" href="{% url 'programs'%}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-institution"></i>
+                            </div>
+                            Programs
+                        </a>
+                        <a class="nav-link" href="{% url 'user_course_list' %}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-cube"></i>
+                            </div>
+                            My Courses
+                        </a>
+
+                        {% if request.user.is_lecturer %}
+                        
+                        <a class="nav-link collapsed" href="" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-check-double"></i>
+                            </div>
+                            Marking
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="{% url 'add_score' %} ">Marking</a>
+                                <a class="nav-link" href="{% url 'quiz_marking'%}">Quiz Marking</a>
+                            </nav>
+                        </div>
+                        {% endif %}
+
+                        
+                        {% if request.user.is_student %}
+                        <div class="sb-sidenav-menu-heading">Students</div>
+                        <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            Course
+                            <div class="sb-sidenav-collapse-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </a>
+                        
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                    aria-controls="pagesCollapseAuth">
+                                    Student Management
+                                    <div class="sb-sidenav-collapse-arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{% url 'user_course_list'%}">My Courses</a>
+                
+                                        <a class="nav-link" href="{% url 'grade_results' %}">Results</a>
+                                        <a class="nav-link" href="{% url 'ass_results'%}">Assesment Results</a>
+                                        <a class="nav-link" href="{% url 'quiz_progress'%} ">Quiz Progress</a>
+                                    </nav>
+                                </div>
+                               
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
+                                    aria-controls="pagesCollapseError">
+                                    Course Management
+                                    <div class="sb-sidenav-collapse-arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="{% url 'course_registration' %}">Manage Course</a>
+                                        
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div>
+                        {% endif %}
+
+                        {% if request.user.is_superuser %}
+                        <div class="sb-sidenav-menu-heading">More</div>
+                        <a class="nav-link" href="{% url 'compiler' %}">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-terminal"></i>
+                            </div>
+                            Code Compiler
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    <strong>{{request.user.user_role}}</strong>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <style>
+                .main-content-box{
+                    padding: 2%;
+                }
+
+            </style>
+            <main class="main-content-box">
+                <!-- This is where the main content is going to apper-->
+                {% block content %}
+                
+                {% endblock content %}
+                
+            </main>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("load", function () {
+        var preloader = document.querySelector(".circles-preloader");
+        preloader.style.display = "none";
+        });
+    </script>
+    
+
+    {% block js %}
+    {% endblock js %}
+    <script>
+        $(document).ready(function () {
+            $('#primary-search').focus(function () {
+                $('#top-navbar').attr('class', 'dim');
+                $('#side-nav').css('pointer-events', 'none');
+                $('#main-content').css('pointer-events', 'none');
+            });
+            $('#primary-search').focusout(function () {
+                $('#top-navbar').removeAttr('class');
+                $('#side-nav').css('pointer-events', 'auto');
+                $('#main-content').css('pointer-events', 'auto');
+            });
+        })
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="{% static 'demo/chart-area-demo.js' %}"></script>
+    <script src="{% static 'demo/chart-bar-demo.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+    <script src="{% static 'js/datatables-simple-demo.js' %}"></script>
+    <!-- Include jQuery -->
+
+</body>
+
+</html>

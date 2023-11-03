@@ -1,0 +1,57 @@
+django
+reportlab
+pytz
+django-debug-toolbar
+python-slugify
+Pillow
+rcssmin==1.1.0
+argon2-cffi==21.3.0
+whitenoise==6.2.0
+redis==4.4.0
+hiredis==2.1.0
+django-cleanup
+python-decouple
+django-environ==0.9.0  
+django-model-utils==4.3.1
+django-crispy-forms==1.14.0 
+crispy-bootstrap5==0.7
+django-compressor==4.1 
+django-redis==5.2.0 
+django-tailwind
+
+#django storage
+azure-storage-blob
+# Django REST Framework
+djangorestframework==3.14.0 
+django-cors-headers==3.13.0 
+# DRF-spectacular for api documentation
+drf-spectacular==0.25.1
+
+
+sphinx==5.3.0
+sphinx-autobuild==2021.3.14
+flake8==6.0.0
+flake8-isort==5.0.3
+coverage==7.0.0 
+black==22.12.0 
+pylint-django==2.5.3
+pre-commit==2.20.0
+factory-boy==3.2.1
+
+django-debug-toolbar==3.8.1
+django-extensions==3.2.1
+django-coverage-plugin==3.0.0 
+pytest-django==4.5.2
+gunicorn==20.1.0
+psycopg2-binary
+boto3
+django-storages[boto3]==1.13.1  # https://github.com/jschneier/django-storages
+django-anymail[amazon_ses]==9.0  # https://github.com/anymail/django-anymail
+
+
+#caching system using memcache, we will store the caching data in the memory of the users device
+pymemcache
+
+#this willl add the rich text editor to everything i wanna do
+django-tinymce
+

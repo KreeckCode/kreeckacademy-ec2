@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block content %}
+
+<h3 class="mt mt-4">Lecture List</h3>
+
+<div class="content-center">
+    <form class="search-form" action="" method="POST">{% csrf_token %}
+        <input class="au-input" type="text" name="id_no" placeholder="ID No." value="{{ request.GET.id_no }}"/>
+        <input class="au-input" type="text" name="name" placeholder="Name" value="{{ request.GET.name }}"/>
+        <input class="au-input" type="text" name="email" placeholder="Email" value="{{ request.GET.email }}"/>
+        <button class="btn btn-light" type="submit">
+            <i class="fas fa-search"></i>  Filter
+        </button>
+    </form>
+</div>
+<hr>
+<br>
+<div class="table-responsive">
+    <table  class="table table-striped ">
+        <thead class="thead thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col"> ID No. </th>
+                <th scope="col"> Full Name </th>
+                <th scope="col"> Email </th>
+                <th scope="col"> Mob No. </th>
+                <th scope="col"> Address/city </th>
+                <th scope="col"> Last login </th>
+                {% if request.user.is_superuser %}
+                <th scope="col"> Action </th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for lecturer in object_list %}
+            <tr>
+                <td data-label="#"> {{ forloop.counter }}.</td>
+                <td data-label="Username">{{ lecturer.username }}</td>
+                <td data-label="Full Names"><a href="{% url 'profile_single' lecturer.id %}">{{ lecturer.get_full_name }}</a></td>
+                <td data-label="Email">{{ lecturer.email }}</td>
+                <td data-label="Phone">{{ lecturer.phone }}</td>
+                <td data-label="Address">{{ lecturer.address }}</td>
+                <td data-label="Last Login">{{ lecturer.last_login }}</td>
+                {% if request.user.is_superuser %}
+                <td > 
+                    <div class="update-delete">
+                        <a href="{% url 'staff_edit' pk=lecturer.pk %}" class="update"><i class="fas fa-edit"></i></a>
+                        <form action="{% url 'lecturer_delete' pk=lecturer.pk %}">{% csrf_token %}
+                            <button type="submit" class="btn btn-sm"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                </td>
+                {% endif %}
+                
+                {% empty %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                    <span class="text-danger">
+                    <i class="far fa-frown"></i>No Lecturer(s).
+                    {% if request.user.is_superuser %}
+                    <a href="{% url 'add_lecturer' %}">
+                    <i class="primary" style="font-size: 22px;">
+                        Add Lecturer Now.
+                    </i>
+                    {% endif %}
+                    </a>
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>
+
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+        </table>
+    
+</div>
+
+</div>
+</div>
+{% endblock content %}
+

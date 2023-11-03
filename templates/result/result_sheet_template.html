@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ course.name }} Result Sheet</title>
+    <style>
+        /* Define your CSS styles here */
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        .red-text {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ current_semester }} Semester {{ current_session }} Result Sheet</h1>
+    <p><b>Course lecturer:</b> {{ lecturer }}</p>
+    <p><b>Level:</b> {{ level }}</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>ID NO.</th>
+                <th>FULL NAME</th>
+                <th>TOTAL</th>
+                <th>GRADE</th>
+                <th>POINT</th>
+                <th>COMMENT</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in result_data %}
+            <tr>
+                <td>{{ data.0 }}</td>
+                <td>{{ data.1 }}</td>
+                <td>{{ data.2 }}</td>
+                <td>{{ data.3 }}</td>
+                <td {% if data.4 == 'F' %}class="red-text"{% endif %}>{{ data.4 }}</td>
+                <td>{{ data.5 }}</td>
+                <td>{{ data.6 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><b>Date:</b> _____________________________ <b>No. of PASS:</b> {{ no_of_pass }}</p>
+    <p><b>Siganture / Stamp:</b> _____________________________ <b>No. of FAIL:</b> {{ no_of_fail }}</p>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "python.formatting.provider": "none",
+    "appService.defaultWebAppToDeploy": "/subscriptions/e3a4bb0e-ea05-4de0-a034-2c78220ddecb/resourceGroups/kreeckacademy/providers/Microsoft.Web/sites/academykreeck",
+    "appService.deploySubpath": ".",
+    "C_Cpp.errorSquiggles": "enabled",
+    "C_Cpp.default.compilerPath": "C:\\MinGW\\bin\\g++.exe",
+    "appService.zipIgnorePattern": [
+        "__pycache__{,/**}",
+        "*.py[cod]",
+        "*$py.class",
+        ".Python{,/**}",
+        "build{,/**}",
+        "develop-eggs{,/**}",
+        "dist{,/**}",
+        "downloads{,/**}",
+        "eggs{,/**}",
+        ".eggs{,/**}",
+        "lib{,/**}",
+        "lib64{,/**}",
+        "parts{,/**}",
+        "sdist{,/**}",
+        "var{,/**}",
+        "wheels{,/**}",
+        "share/python-wheels{,/**}",
+        "*.egg-info{,/**}",
+        ".installed.cfg",
+        "*.egg",
+        "MANIFEST",
+        ".env{,/**}",
+        ".venv{,/**}",
+        "env{,/**}",
+        "venv{,/**}",
+        "ENV{,/**}",
+        "env.bak{,/**}",
+        "venv.bak{,/**}",
+        ".vscode{,/**}"
+    ]
+}

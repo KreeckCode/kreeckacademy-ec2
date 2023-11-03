@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stylish Drawing App</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #canvas-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #canvas {
+            border: 2px solid #000;
+            background-color: white;
+        }
+        .controls {
+            display: flex;
+            margin-top: 20px;
+        }
+        .control-label {
+            margin-right: 10px;
+        }
+        .brush-picker, .stroke-picker {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e6e6e6;
+        }
+        .clear-button {
+            background-color: #ff0000;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container">
+        <canvas id="canvas" resize></canvas>
+        <div class="controls">
+            <label class="control-label">Brush:</label>
+            <select class="brush-picker">
+                <option value="pen">Pen</option>
+                <option value="circle">Circle</option>
+                <option value="square">Square</option>
+            </select>
+            <label class="control-label">Brush Size:</label>
+            <input type="range" class="stroke-picker" min="1" max="20" value="5">
+            <button class="clear-button">Clear Canvas</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/paper@0.12.16/dist/paper-full.min.js"></script>
+    <script>
+        paper.setup('canvas');
+
+        let path;
+        let brush = 'pen';
+        let strokeSize = 5;
+        let isDrawing = false;
+
+        function onMouseDown(event) {
+            isDrawing = true;
+            path = new paper.Path();
+            path.strokeColor = 'black';
+            path.strokeWidth = strokeSize;
+            path.add(event.point);
+        }
+
+        function onMouseDrag(event) {
+            if (!isDrawing) return;
+            path.add(event.point);
+        }
+
+        function onMouseUp() {
+            isDrawing = false;
+            path.simplify(10);
+            path = null;
+        }
+
+        document.querySelector('.brush-picker').addEventListener('change', (e) => {
+            brush = e.target.value;
+        });
+
+        document.querySelector('.stroke-picker').addEventListener('input', (e) => {
+            strokeSize = e.target.value;
+        });
+
+        document.querySelector('.clear-button').addEventListener('click', () => {
+            project.clear();
+        });
+
+        paper.view.onMouseDown = onMouseDown;
+        paper.view.onMouseDrag = onMouseDrag;
+        paper.view.onMouseUp = onMouseUp;
+    </script>
+</body>
+</html>
+

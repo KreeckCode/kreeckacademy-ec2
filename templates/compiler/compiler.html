@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Compiler</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/theme/dracula.min.css">
+    <link rel="shortcut icon" type="image/jpg" href="{% static 'img/logo.png' %}"/>
+    <!-- Open Graph meta tags for social media sharing -->
+    <meta property="og:title" content="Kreeck Academy">
+    <meta property="og:description" content="Your Path to Knowledge and Skills">
+    <meta property="og:url" content="https://academy.kreeck.com">
+    <meta property="og:image" content="{% static 'img/logo.png' %}">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card meta tags for Twitter sharing -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Kreeck Academy">
+    <meta name="twitter:description" content="Your Path to Knowledge and Skills">
+    <meta name="twitter:image" content="{% static 'img/logo.png' %}">
+    <meta name="twitter:url" content="https://academy.kreeck.com">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #282c36;
+            color: #abb2bf;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        .editor, .output {
+            flex: 1;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            min-height: 300px;
+        }
+        .editor {
+            background-color: #1e2127;
+            border-right: 2px solid #abb2bf;
+        }
+        .output {
+            background-color: #1e2127;
+            overflow-y: auto;
+        }
+        select, textarea, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #abb2bf;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #282c36;
+            color: #abb2bf;
+        }
+        button {
+            background-color: #61afef;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4189c7;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #61afef;
+        }
+        pre {
+            padding: 10px;
+            background-color: #1e2127;
+            border: 1px solid #abb2bf;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            color: #abb2bf;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="editor">
+            <h1>Code Editor</h1>
+            <select id="languageSelect">
+                <option value="python">Python</option>
+                <option value="html">HTML</option>
+                <option value="css">CSS</option>
+                <option value="javascript">JavaScript</option>
+                <option value="cpp">C++</option>
+            </select>
+            <textarea id="code" rows="10" placeholder="Enter your code here"></textarea>
+            <button id="runButton">Run Code</button>
+        </div>
+        <div class="output">
+            <h1>Output</h1>
+            <h2>Code Output:</h2>
+            <pre id="output"></pre>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-html.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.3/mode/python/python.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // Create a CodeMirror instance for the code editor textarea
+    const codeEditor = CodeMirror.fromTextArea(document.getElementById('code'), {
+        lineNumbers: true,
+        theme: 'dracula',
+        mode: 'python',  // Set the initial mode to Python
+        extraKeys: { 'Ctrl-Space': 'autocomplete' },
+    });
+
+    document.getElementById('runButton').addEventListener('click', async () => {
+        const language = document.getElementById('languageSelect').value;
+        const code = codeEditor.getValue();
+
+        const formData = new FormData();
+        formData.append('language', language);
+        formData.append('code', code);
+
+        const response = await fetch('/run_code/', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: formData,
+        });
+
+        const data = await response.json();
+        const outputElement = document.getElementById('output');
+        outputElement.innerHTML = data.output || data.error;
+
+        // Apply syntax highlighting to the output
+        Prism.highlightAllUnder(outputElement);
+    });
+});
+    </script>
+</body>
+</html>

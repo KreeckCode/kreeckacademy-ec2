@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+    background-color: #333;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    padding-top: 20px;
+}
+
+.sidebar {
+    background-color: #222;
+    padding: 20px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2);
+    height: 100%;
+}
+
+.sidebar h2 {
+    color: #fff;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.video-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.video-container h3 {
+    color: #0073e6;
+}
+
+.video-controls button {
+    background-color: #0073e6;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.course-files ul {
+    list-style: none;
+    padding: 0;
+}
+
+.course-files a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.course-files a:hover {
+    text-decoration: underline;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 sidebar">
+                <h2>Course Lessons</h2>
+                <ul>
+                    <li><a href="#" id="lesson1">Lesson 1: Introduction</a></li>
+                    <li><a href="#" id="lesson2">Lesson 2: HTML Basics</a></li>
+                    <!-- Add more lessons as needed -->
+                </ul>
+            </div>
+            <div class="col-md-9 video-container">
+                <div id="video-player">
+                    <video id="video" controls>
+                        <source src="https://www.example.com/video1.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-controls">
+                    <button id="prev-video" class="btn btn-primary">
+                        <i class="fa fa-backward"></i> Previous
+                    </button>
+                    <button id="play-pause" class="btn btn-primary">
+                        <i class="fa fa-play"></i> Play
+                    </button>
+                    <button id="next-video" class="btn btn-primary">
+                        Next <i class="fa fa-forward"></i>
+                    </button>
+                </div>
+                <div class="video-notes">
+                    <h3>Video Notes</h3>
+                    <p>Your video notes go here.</p>
+                </div>
+                <div class="course-files">
+                    <h3>Course Files</h3>
+                    <ul>
+                        <li><a href="#">File 1</a></li>
+                        <li><a href="#">File 2</a></li>
+                        <!-- Add more course files as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

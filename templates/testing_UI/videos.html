@@ -1,0 +1,358 @@
+
+<!doctype html>
+<html lang="en">
+
+<head><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script><script type="text/javascript" src="/___vscode_livepreview_injected_script"></script>
+    <script src="../assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.118.2">
+    <title>Kreeck Academy Courses</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        .course-container {
+            display: flex;
+            border-radius: 20px;
+            background-image: 
+            linear-gradient(180deg, rgba(33, 37, 41, 0.01), rgba(33, 37, 41, 1) 85%),
+                radial-gradient(ellipse at top left, rgb(13 121 253 / 50%), transparent 50%),
+                radial-gradient(ellipse at top right, #212529, transparent 50%),
+                radial-gradient(ellipse at center right, rgb(112 44 249 / 80%), transparent 50%),
+                radial-gradient(ellipse at center left, rgb(164 51 214), transparent 50%);
+            border: 1px solid #707070;
+            /* flex-wrap: wrap; */
+            flex-direction: row;
+            font-family: Poppins;
+        }
+        .container-left{
+            padding: 1%;
+            flex: 70%;
+        }
+        .container-img {
+            padding: 5%;
+            border-radius: 20px;
+            background-color: #0a58ca;
+            height: 100%;
+            width: auto;
+            background-image: url(/img.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .container-info {
+            padding: 1.5%;
+            width: 100%;
+        }
+
+        .curriculum-card {
+            background-color: #212529;
+            border-radius: 1vh;
+            border: 1px solid #7070707d;
+            min-width: 30%;
+            margin: 10px 10px 0px 0px;
+        }
+
+        .course-container-color {
+            background-color: #171a1d;
+            padding: 2%;
+        }
+        .course-info-header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-left{
+            float: left;
+        }
+        .curriculum{
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .course-curriculum{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+        .flex{
+            display: flex;
+        }
+
+        .margin-bottom{
+            margin-bottom: 2%;
+        }
+        .course-title{
+            align-content: center;
+        }
+        .title-text{
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .body-text{
+            font-size: 12px;
+            color: #ffffff;
+
+        }
+        h2{
+            font-size: small;
+        }
+        .about-course{
+            color: #79797a;
+            margin-left: 10px;
+        }
+        .about{
+            margin: 10px;
+        }
+
+        
+        @media screen and (max-width: 770px) {
+            .course-container{
+                flex-direction: column;
+                flex-wrap: wrap;
+                padding-bottom: 20px;
+            }
+            .container-img {
+                min-height: 275px;
+                padding: 5%;
+                border-radius: 20px;
+                background-color: #0a58ca;
+                height: 100%;
+                width: auto;
+                background-image: url(/img.jpg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;
+            }
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="album py-5 course-container-color">
+        <div class="container">
+            <h3 style="font-family: Inter; font-size: larger; font-weight: bold;">Courses and Programs</h3>
+            <div class="col margin-bottom">
+                <div class="course-container">
+                    <div class="container-left">
+                        <div class="container-img img-fluid">
+                            <div class="btn bg-light text-bg-light ">free Course</div>
+                        </div>
+                    </div>
+                    <div class="container-info">
+                        <div class="course-info-header">
+                            <div class="course-title card-left">
+                                <a href="#" style="text-decoration: none;"><h2 class="title-text">Introduction to Web Development</h2></a>
+                                
+                            </div>
+                            <div class="course-instructor card-right">
+                                <h2 class="btn btn-secondary body-text">Dave Monama</h2>
+                            </div>
+                        </div>
+                        <div class="body-text">
+                            <h2>Course Curriculum</h2>
+                        </div>
+
+
+                        <div class="course-curriculum">
+                            <div class="alert curriculum-card">
+                                <H2>HTML</H2> 
+                            </div>
+                            <div class="curriculum-card alert ">
+                                <h2>CSS</h2>
+                            </div>
+                            <div class="alert curriculum-card space-between">
+                                <h2>Javascript</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Responsive Design</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Development tools</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Flexbox</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Version Control</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Web Deployment</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Projects</h2>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <div class="about">
+                            <div class="title-text">
+                                <h6>Web Development</h6>
+                            </div>
+                            <div class="about-course">
+                                <h2>
+                                    <strong>"Introduction to Web Development"</strong> is a foundational course that provides 
+                                    students with the fundamental knowledge and skills needed to start a career 
+                                    in web development. The course typically covers the above key topics.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col margin-bottom">
+                <div class="course-container">
+                    <div class="container-left">
+                        <div class="container-img img-fluid">
+                            <div class="btn bg-light text-bg-light ">free Course</div>
+                        </div>
+                    </div>
+                    <div class="container-info">
+                        <div class="course-info-header">
+                            <div class="course-title card-left">
+                                <a href="#" style="text-decoration: none;"><h2 class="title-text">Development Operations</h2></a>
+                            </div>
+                            <div class="course-instructor card-right">
+                                <h2 class="btn btn-secondary body-text">Dave Monama</h2>
+                            </div>
+                        </div>
+                        <div class="body-text">
+                            <h2>Course Curriculum</h2>
+                        </div>
+
+                        <div class="course-curriculum">
+                            <div class="alert curriculum-card">
+                                <h2>Continuous Integration (CI)</h2>
+                            </div>
+                            <div class="curriculum-card alert ">
+                                <h2>Continuous Deployment (CD)</h2>
+                            </div>
+                            <div class="alert curriculum-card space-between">
+                                <h2>Infrastructure as Code (IaC)</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Automation Tools</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Monitoring and Logging</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Security in DevOps</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>DevOps Case Studies</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Version Control</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>DevOps Best Practices</h2>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="about">
+                            <div class="title-text">
+                                <h6>DevOps</h6>
+                            </div>
+                            <div class="about-course">
+                                <h2>
+                                    <strong>"Development Operations (DevOps)"</strong> is a comprehensive course designed to introduce 
+                                    students to the principles, practices, and tools of DevOps (Development and Operations). 
+                                    DevOps is a set of practices that aims to streamline and automate the software development 
+                                    and deployment process, enabling faster and more reliable releases. This course typically covers the above key areas.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col margin-bottom">
+                <div class="course-container">
+                    <div class="container-left">
+                        <div class="container-img" >
+                            <div class="btn bg-light text-bg-light ">free Course</div>
+                        </div>
+                    </div>
+                    <div class="container-info">
+                        <div class="course-info-header">
+                            <div class="course-title card-left">
+                                <a href="#" style="text-decoration: none;"><h2 class="title-text">UI UX Design</h2></a>
+                            </div>
+                            <div class="course-instructor card-right">
+                                <h2 class="btn btn-secondary body-text">Dave Monama</h2>
+                            </div>
+                        </div>
+                        <div class="body-text">
+                            <h2>Course Curriculum</h2>
+                        </div>
+                        <div class="course-curriculum">
+                            
+                            <div class="alert curriculum-card">
+                                <h2>UI vs. UX Design</h2>
+                            </div>
+                            <div class="curriculum-card alert ">
+                                <h2>User-Centered Design</h2>
+                            </div>
+                            <div class="alert curriculum-card space-between">
+                                <h2>Design Thinking</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Wireframing and Prototyping</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Visual Design Principles</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Interaction Design</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Mobile Design</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Design Tools</h2>
+                            </div>
+                            <div class="alert curriculum-card">
+                                <h2>Portfolio Development</h2>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="about">
+                            <div class="title-text">
+                                <h6>Front-End Design</h6>
+                            </div>
+                            <div class="about-course">
+                                <h2>
+                                    <strong>"UI UX Design"</strong>  is a foundational course that introduces students to the principles, 
+                                    processes, and tools used in User Interface (UI) and User Experience (UX) design. 
+                                    This course typically covers the following key areas.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

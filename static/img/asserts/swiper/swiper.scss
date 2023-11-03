@@ -1,0 +1,58 @@
+body{
+    .logo-grid{
+     display: grid;
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: 300px;
+    
+    .column{
+      
+      img{
+        width: 100%;
+      }
+      
+      .grid-logo-wrapper{
+          position: relative;
+          
+          .grid-logo{
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            transform: translateY(-30px);
+            transition: all .3s ease-in-out;
+            visibility: hidden;
+            opacity: 0;
+            
+            &.active{
+              transform: translateY(0px);
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+      }
+      
+      
+      &:nth-child(1){
+        //background-color: red;
+      }
+      &:nth-child(2){
+        //background-color: yellow;
+      }
+      &:nth-child(3){
+        //background-color: green;
+      }
+    }
+    
+  }
+    
+  }
+  
+  
+  body {
+    background-color:#1d1d1d;
+    font-family: "Asap", sans-serif;
+    color:#989898;
+    margin:0 10px;
+    font-size:16px;
+  }
+  

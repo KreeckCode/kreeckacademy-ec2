@@ -1,0 +1,303 @@
+.course-title {
+  border-left: solid #ffe761;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 2% 10px 0px;
+}
+.course-lessons-title {
+  border-radius: 8px;
+  padding: 10px 0px 0px 0px;
+  color: #bbb;
+  margin: 10px 0px 10px 0px;
+}
+
+:root {
+  --primary: linear-gradient(to bottom right, #111, #222);
+  --secondary: gold;
+  --text: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-image: var(--primary);
+  font-family: inter;
+  color: var(--text);
+  align-items: center;
+}
+
+.container {
+  width: auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 0px;
+  column-gap: 1%;
+  margin: 0px 2% 0px 2%;
+  text-transform: capitalize;
+}
+
+
+@media screen and (max-width: 990px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .video-playlist {
+    padding-left: 0px;
+  }
+  .document-playlist{
+    padding-left: 0%;
+  }
+}
+
+.video-playlist {
+  width: 100%;
+  height: 90%;
+  display: grid;
+  grid-template-rows: min-content;
+  grid-column-end: auto;
+  padding-left: 0%;
+}
+/* Add these styles to style your document elements */
+.document {
+  display: flex;
+  background-color: #222;
+  align-items: center;
+  padding: 10px;
+  /* border: 1px solid #ccc; */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.document:hover {
+  background-color: #f0f0f0; /* Change the background color on hover */
+}
+
+.document a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #717171;
+}
+
+.document i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.document span {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Adjust the styles based on your design preferences */
+
+
+.document-playlist {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: min-content;
+  grid-column-end: auto;
+  padding-left: 0%;
+}
+
+.main-video {
+  width: 100%;
+  height: auto;
+  
+}
+
+.main-video .title {
+  margin-top: 1rem;
+}
+
+.video-playlist .title {
+  padding-left: 1rem;
+}
+
+.video-playlist > p {
+  padding: 1rem;
+  color: var(--secondary);
+}
+
+.video-playlist .videos {
+  height: 93%;
+  overflow-y: auto;
+}
+
+.video-playlist .videos::-webkit-scrollbar {
+  width: 0.4rem;
+  border-radius: 0.4rem;
+  background-color: #0005;
+}
+
+.video-playlist .videos::-webkit-scrollbar-thumb {
+  border-radius: 0.4rem;
+  background-color: #fff;
+}
+
+.video-playlist .videos .video {
+  position: relative;
+  width: 100%;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  margin-top: 0.1rem;
+  background-color: #222;
+  cursor: pointer;
+  color: #a0a0a0;
+  border-radius: 0.5rem;
+  margin-bottom: 5px;
+}
+
+.video-playlist .videos .video:hover {
+  background-color: #0003;
+}
+
+.video-playlist .videos .video.active {
+  background-color: #0003;
+  color: var(--secondary);
+}
+
+.main-video video {
+  width: 100%;
+  border-radius: 0.5rem;
+  margin-right: 2%;
+  border: #222222 2px solid;
+}
+
+.video img {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 1.5rem;
+  height: 1.5rem;
+
+  filter: invert(100%);
+}
+
+.video-playlist .videos .video.active img {
+  filter: invert(100%) sepia(100%) saturate(2000%) hue-rotate(360deg);
+}
+
+.video p {
+  margin-left: 2.5rem;
+}
+
+.video h3 {
+  width: 23rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  font: 100 1rem sans-serif;
+  padding: 0 0.5rem;
+}
+
+.action-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  margin-top: 10px;
+}
+.prev-video,
+.next-video {
+  background-color: #222;
+  border: #6f6f6f 1px solid;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 10px 15px 10px 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s; /* Add a smooth transition effect */
+}
+
+.prev-video:hover,
+.next-video:hover {
+  background-color: rgba(255, 255, 255, 0.515); /* Change the background color on hover */
+}
+
+.next-video i {
+  padding-right: 10px;
+}
+.prev-video i {
+  padding-right: 10px;
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 2% 15px 2%;
+  margin-bottom: 3%;
+
+  align-items: center;
+}
+.logo {
+  font-family: Segoe UI;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+.links {
+  display: flex;
+}
+.nav-links {
+  /* padding-left: 25px; */
+  background-color: #0005;
+  margin-left: 10px;
+  border-radius: 100%;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notes-title {
+  color: #a0a0a0;
+  padding: 15px 0px 5px 0px;
+}
+.notes {
+  overflow: hidden;
+  position: relative;
+  max-height: 5em;
+  color: #8d8d8d;
+  padding-bottom: 15px;
+}
+input {
+  border-radius: 10px;
+  width: 250px;
+  background-color: #424b48;
+  border: none;
+}
+
+.limited-text {
+  margin: 0;
+  padding: 0;
+}
+.flex {
+  width: 100%;
+  margin-right: 1%;
+}
+.read-more {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  text-decoration: none;
+  padding: 0 5px;
+}

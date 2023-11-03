@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template - New Post Notification</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif;">
+
+    <!-- Header Section -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto;">
+        <tr>
+            <td align="center" bgcolor="#333333" style="padding: 30px; color: #ffffff;">
+                <h1>Kreeck Academy</h1>
+                <p style="color: #858585;">Your Path to Knowledge and Skills</p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Main Content Section -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #f9f9f9;">
+        <tr>
+            <td align="center" bgcolor="#ffffff" style="padding: 20px;">
+                <h1 style="color: #333333;">New Post Added at Kreeck Academy</h1>
+                <p>Dear student,</p>
+                <p>We are excited to inform you that a new post titled '{{ post.title }}' has been added to our website. Make sure to check it out for the latest updates and important information.</p>
+                <p>Stay connected with Kreeck Academy for more exciting updates!</p>
+                <p style="margin-top: 40px;">
+                    <a href="https://academy.kreeck.com/accounts/login/?next=/" style="background-color: #007BFF; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Log in to Kreeck Academy</a>
+                </p>
+                <p style="margin-top: 40px;">Best regards,<br>The Kreeck Academy Team</p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Footer Section -->
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; margin: 0 auto;">
+        <tr>
+            <td align="center" style="padding: 20px; color: #ffffff; background-color: #333333;">
+                &copy; 2023 Kreeck. All rights reserved.
+                <br>
+                <!-- Address: 123 Main Street, City, Country
+                <br>
+                Phone: +27 72 230 9579-->
+                <br>
+                Email: admin@kreeck.com
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
